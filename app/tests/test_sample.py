@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.register_blueprint(sample_bp, url_prefix='')
 
 
-class TestGist(unittest.TestCase):
+class TestSample(unittest.TestCase):
     def test_http_200(self):
         client = app.test_client()
         res = client.get('/')
@@ -17,12 +17,12 @@ class TestGist(unittest.TestCase):
         res = client.get('/not_found')
         self.assertEqual(res.status_code, 404)
 
-    def test_get_gist_200(self):
+    def test_get_sample_200(self):
         client = app.test_client()
         res = client.get('/abc')
         self.assertEqual(res.status_code, 200)
 
-    def test_get_gist_data(self):
+    def test_get_sample_data(self):
         client = app.test_client()
         res = client.get('/abc')
         self.assertEqual(res.json[0]['owner']['login'], 'abc')
